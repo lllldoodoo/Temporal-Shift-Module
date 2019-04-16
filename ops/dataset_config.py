@@ -5,7 +5,7 @@
 
 import os
 
-ROOT_DATASET = '/ssd/video/'  # '/data/jilin/'
+ROOT_DATASET = '/data1/chanwoong/'  # '/data/jilin/'
 
 
 def return_ucf101(modality):
@@ -61,16 +61,16 @@ def return_something(modality):
 
 
 def return_somethingv2(modality):
-    filename_categories = 'something/v2/category.txt'
+    filename_categories = 'somethingv2/category.txt'
     if modality == 'RGB':
-        root_data = ROOT_DATASET + 'something/v2/20bn-something-something-v2-frames'
-        filename_imglist_train = 'something/v2/train_videofolder.txt'
-        filename_imglist_val = 'something/v2/val_videofolder.txt'
+        root_data = ROOT_DATASET + 'somethingv2/20bn-something-something-v2-frames'
+        filename_imglist_train = 'somethingv2/train_videofolder.txt'
+        filename_imglist_val = 'somethingv2/val_videofolder.txt'
         prefix = '{:06d}.jpg'
     elif modality == 'Flow':
-        root_data = ROOT_DATASET + 'something/v2/20bn-something-something-v2-flow'
-        filename_imglist_train = 'something/v2/train_videofolder_flow.txt'
-        filename_imglist_val = 'something/v2/val_videofolder_flow.txt'
+        root_data = ROOT_DATASET + 'somethingv2/20bn-something-something-v2-flow'
+        filename_imglist_train = 'somethingv2/train_videofolder_flow.txt'
+        filename_imglist_val = 'somethingv2/val_videofolder_flow.txt'
         prefix = '{:06d}.jpg'
     else:
         raise NotImplementedError('no such modality:'+modality)
