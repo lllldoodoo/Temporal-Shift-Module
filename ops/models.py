@@ -112,7 +112,17 @@ class TSN(nn.Module):
                 print('Adding non-local module...')
                 from ops.non_local import make_non_local
                 make_non_local(self.base_model, self.num_segments)
-
+                
+            if False:
+                print('Adding dynamic cnn module...')
+                from ops.dynamic_cnn import make_dynamic_cnn
+                make_dynamic_cnn(self.base_model, self.num_segments)
+            
+            if True:
+                print('Adding light cnn module...')
+                from ops.dynamic_cnn import make_light_cnn
+                make_light_cnn(self.base_model, self.num_segments)
+                
             self.base_model.last_layer_name = 'fc'
             self.input_size = 224
             self.input_mean = [0.485, 0.456, 0.406]
@@ -214,7 +224,8 @@ class TSN(nn.Module):
                     bn.extend(list(m.parameters()))
             elif len(m._modules) == 0:
                 if len(list(m.parameters())) > 0:
-                    raise ValueError("New atomic module type: {}. Need to give it a learning policy".format(type(m)))
+                    custom_ops.extend(list(m.parameters()))
+                    # raise ValueError("New atomic module type: {}. Need to give it a learning policy".format(type(m)))
 
         return [
             {'params': first_conv_weight, 'lr_mult': 5 if self.modality == 'Flow' else 1, 'decay_mult': 1,
