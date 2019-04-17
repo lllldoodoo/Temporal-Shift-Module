@@ -1,2 +1,3 @@
 log
-ops/dataset_config.py
+ops/
+*.ipynb
