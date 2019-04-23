@@ -113,12 +113,12 @@ class TSN(nn.Module):
                 from ops.non_local import make_non_local
                 make_non_local(self.base_model, self.num_segments)
                 
-            if False:
+            if True:
                 print('Adding dynamic cnn module...')
                 from ops.dynamic_cnn import make_dynamic_cnn
                 make_dynamic_cnn(self.base_model, self.num_segments)
             
-            if True:
+            if False:
                 print('Adding light cnn module...')
                 from ops.dynamic_cnn import make_light_cnn
                 make_light_cnn(self.base_model, self.num_segments)

@@ -16,10 +16,10 @@ class Dynamic_Cnn_Wrapper(nn.Module):
 
         nt, c, h, w = x.size()
         x = x.view(nt // self.n_segment, self.n_segment, c, h, w).permute(1, 0, 3, 4, 2)  # t, n, h, w, c
-        x = x.view(self.n_segment, -1, c) # t, n * h * w, c
+        x = x.contiguous().view(self.n_segment, -1, c) # t, n * h * w, c
         x = self.dynamic_cnn(x)
         x = x.view(self.n_segment, -1, h, w, c).permute(1, 0, 4, 2, 3) # n, t, c, h, w
-        x = x.view(nt, c, h, w)
+        x = x.contiguous().view(nt, c, h, w)
         return x
     
 def make_dynamic_cnn(net, n_segment):
